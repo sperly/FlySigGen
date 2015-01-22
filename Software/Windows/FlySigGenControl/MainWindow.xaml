@@ -1,0 +1,22 @@
+﻿<Window x:Class="FlySigGenControl.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <TextBlock HorizontalAlignment="Right" Height="59" Margin="0,23,290,0" Text="160.05" VerticalAlignment="Top" Width="199" FontWeight="Bold" FontFamily="Consolas" FontSize="48" TextAlignment="Right"/>
+        <TextBlock HorizontalAlignment="Right" Height="59" Margin="0,112,290,0" Text="160.05" VerticalAlignment="Top" Width="199" FontWeight="Bold" FontFamily="Consolas" FontSize="48" TextAlignment="Right"/>
+        <TextBlock HorizontalAlignment="Right" Height="59" Margin="0,197,290,0" Text="160.05" VerticalAlignment="Top" Width="199" FontWeight="Bold" FontFamily="Consolas" FontSize="48" TextAlignment="Right"/>
+        <Label Content="Genreator 1" HorizontalAlignment="Left" Height="33" Margin="63,10,0,0" VerticalAlignment="Top" Width="90"/>
+        <Label Content="Genreator 2" HorizontalAlignment="Left" Height="28" Margin="63,94,0,0" VerticalAlignment="Top" Width="90"/>
+        <Label Content="Genreator 3" HorizontalAlignment="Left" Height="33" Margin="63,179,0,0" VerticalAlignment="Top" Width="90"/>
+        <CheckBox x:Name="cbxGen1MHz" HorizontalAlignment="Left" Height="20" Margin="257,23,0,0" VerticalAlignment="Top" Width="59" Content="MHz" />
+        <CheckBox x:Name="cbxGen1Hz" Content="Hz" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="59" Margin="257,63,0,0"/>
+        <CheckBox x:Name="cbxGen1kHz" Content="kHz" HorizontalAlignment="Left" Height="20" Margin="257,43,0,0" VerticalAlignment="Top" Width="59"/>
+        <CheckBox x:Name="cbxGen2MHz" HorizontalAlignment="Left" Height="20" Margin="257,114,0,0" VerticalAlignment="Top" Width="59" Content="MHz" />
+        <CheckBox x:Name="cbxGen2Hz" Content="Hz" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="59" Margin="257,154,0,0"/>
+        <CheckBox x:Name="cbxGen2kHz" Content="kHz" HorizontalAlignment="Left" Height="20" Margin="257,134,0,0" VerticalAlignment="Top" Width="59"/>
+        <CheckBox x:Name="cbxGen3MHz" HorizontalAlignment="Left" Height="20" Margin="257,199,0,0" VerticalAlignment="Top" Width="59" Content="MHz" />
+        <CheckBox x:Name="cbxGen3Hz" Content="Hz" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="59" Margin="257,239,0,0"/>
+        <CheckBox x:Name="cbxGen3kHz" Content="kHz" HorizontalAlignment="Left" Height="20" Margin="257,219,0,0" VerticalAlignment="Top" Width="59"/>
+    </Grid>
+</Window>
