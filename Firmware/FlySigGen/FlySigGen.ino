@@ -4,6 +4,12 @@
 #include <Bounce2.h>
 #include "si5351.h"
 
+// General defines
+#define USB_BUFFER_SIZE			 64
+#define USB_SEND_BUFFER          0b01
+#define USB_RECV_BUFFER          0b10
+#define USB_BOTH_BUFFER          0b11
+
 // Knob pin Defines
 #define PIN_KNOB_1_A             5
 #define PIN_KNOB_1_B             6
@@ -68,6 +74,11 @@ knobState_t knobState1;
 knobState_t knobState2;
 knobState_t knobState3;
 
+uint8_t usbSendBuffer[USB_BUFFER_SIZE];
+uint8_t usbRecvBuffer[USB_BUFFER_SIZE];
+
+bool localChanged = true;
+
 void setup()
 {
   lcd.begin(DOG_LCD_M163);
@@ -98,6 +109,9 @@ void setup()
   knobState1.pos = -999;
   knobState2.pos = -999;
   knobState3.pos = -999;
+  
+  Serial.begin(9600);
+  ClearUSBBuffers(USB_BOTH_BUFFER);
   
   //sleep(2);
   lcd.clear();
@@ -131,6 +145,43 @@ void loop()
   {
     
   }
+  
+  if(localChanged == true)
+  {
+	sendUSBData();
+  }
+  
+  uint8_t bytesAvailable = readUSBData();
+  
+}
+
+uint8_t readUSBData()
+{
+  int readBytes = 0;
+  while (Serial.available() && readBytes <= USB_RECV_BUFFER) {
+    usbRecvBuffer[readBytes++] = Serial.read();
+  }
+  return readBytes - 1;
+}
+
+void sendUSBData()
+{
+  ClearUSBBuffers(USB_SEND_BUFFER);
+  
+  int sendBytes = 4;
+  
+  // Magic bytes
+  usbSendBuffer[0] = '1';
+  usbSendBuffer[1] = '3';
+  usbSendBuffer[2] = '3';
+  usbSendBuffer[3] = '7';
+  
+  // Gen1 setting, 8 byte
+  //usbSendBuffer[4] = 
+  
+  Serial.write(usbSendBuffer, sendBytes);
+  //rawhid_send(int num, void *buf, int len, int timeout);
+	
 }
 
 void RedrawMain()
@@ -161,4 +212,24 @@ void printGenVal(int genNum, long val)
     lcd.print(val, DEC);
     lcd.print(" Hz");
   } 
+}
+
+void ClearUSBBuffers(uint8_t buffer)
+{
+  if(buffer & USB_SEND_BUFFER == USB_SEND_BUFFER)
+  {
+	memset(usbSendBuffer, 0, USB_BUFFER_SIZE);
+	/*for(int i = 0;i < USB_BUFFER_SIZE;i++)
+	{
+	  usbSendBuffer[i] = 0;
+	}*/
+  }
+  if(buffer & USB_RECV_BUFFER == USB_RECV_BUFFER)
+  {
+	memset(usbRecvBuffer, 0, USB_BUFFER_SIZE);
+    /*for(int i = 0;i < USB_BUFFER_SIZE;i++)
+    {
+	  usbRecvBuffer[i] = 0;
+    }*/
+  }
 }
