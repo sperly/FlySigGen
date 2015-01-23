@@ -61,6 +61,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="SerialHandling\SerialPortWrapper.cs" />
+    <Compile Include="SerialHandling\SerialReader.cs" />
+    <Compile Include="SerialHandling\SerialMessage.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

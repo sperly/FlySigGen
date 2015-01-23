@@ -28,7 +28,13 @@
 #define PIN_LCD_CSB              17
 #define PIN_LCD_BACKLIGHT        18
 
-// Instansiations
+// Measurement pin defines
+#define PIN_FREQ_COUNT			 3
+#define PIN_ADC_0				 A2   /* ADC0_SE8 */
+#define PIN_ADC_1				 A3   /* ADC1_SE9 */
+#define PIN_DAC					 A14
+
+// Instantiations
 Encoder knob1(PIN_KNOB_1_A, PIN_KNOB_1_B);
 Encoder knob2(PIN_KNOB_2_A, PIN_KNOB_2_B);
 Encoder knob3(PIN_KNOB_3_A, PIN_KNOB_3_B);
@@ -180,7 +186,7 @@ void sendUSBData()
   //usbSendBuffer[4] = 
   
   Serial.write(usbSendBuffer, sendBytes);
-  //rawhid_send(int num, void *buf, int len, int timeout);
+  //int sentBytes = RawHID.send(usbSendBuffer, sendBytes);
 	
 }
 
